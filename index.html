@@ -1,64 +1,171 @@
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TG-@cric_stream</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-   <script src="https://cdn.tailwindcss.com"></script> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Channels Responsive</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1D4ED8',
+            secondary: '#2563EB',
+            bgGray: '#F3F4F6',
+            channelBg: '#FFFFFF',
+            channelHover: '#E5E7EB',
+            channelActive: '#3B82F6',
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    body {
-      all: unset;
-      font-family: Arial, sans-serif;
-      width: 100wh;
-      height: 100vh;
-      
+    html, body {
+      margin: 0;
     }
-
-    .no-tailwind {
-    all: unset;
+    #channels::-webkit-scrollbar {
+      width: 8px;
     }
-
-   #jwplayerDiv{
-    width:100%;
-    height:100%;
-    margin-top:5px;
-    
-   }
-
-   #joinTelegramButton{
-       background-color:white;
-       padding-left: 10px;
-       padding-right: 10px;
-   }
-    
+    #channels::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    #channels::-webkit-scrollbar-thumb {
+      background-color: #3B82F6;
+      border-radius: 10px;
+      border: 2px solid #f1f1f1;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0%); }
+      to { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+      animation: marquee 50s linear infinite;
+    }
   </style>
-  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
-  <script src="script.js" defer></script>
 </head>
-<body oncontextmenu="return false" >
+<body class="bg-bgGray flex flex-col min-h-screen">
+
   <!-- Header -->
-    <header class="p-4 bg-blue-900 text-white text-center text-2xl font-bold">
-       <a href="https://cinearena.live/"> <img src="cineheader.png" class="h-10 md:h-10 lg:h-10 mx-auto"></a>
-    </header>
-  <!--Player-->
-  <div id="jwplayerDiv"></div>
-
-  <center>
-    <script src="//widget.supercounters.com/ssl/online_t.js"></script>
-    <script>sc_online_t(1707487,"Users Online","170ddb");</script>
-    <noscript><a href="https://www.supercounters.com/">supercounters.com</a></noscript>
-  </center>
-
-  <div style="background-color: #0074d9; width:100%; text-align: center; padding: 10px;">
-    <a href="https://t.me/cric_stream" target="_blank">
-      <button id="joinTelegramButton">Join Telegram</button>
+  <header class="p-4 bg-primary text-white flex justify-center items-center shadow-md">
+    <a href="https://cinearena.live" class="flex items-center space-x-3">
+      <img src="cineheader.png" alt="Cine Arena Header" class="h-12" />
+      <span class="font-bold text-lg sm:text-xl select-none"></span>
     </a>
+  </header>
+
+  <!-- Scrolling Marquee -->
+  <div class="flex items-center w-full bg-green-800">
+    <h4 class="shrink-0 m-0 text-lg text-white px-2">UPDATES:</h4>
+    <div class="overflow-hidden whitespace-nowrap flex-grow">
+      <p class="inline-block m-0 text-base text-white bg-red-600 px-2 py-1 animate-marquee">
+        If video not play refresh once and wait for few seconds video will start playing otherwise message in Telegram comments.
+        यदि वीडियो नहीं चलता है तो एक बार रिफ्रेश करें और कुछ सेकंड प्रतीक्षा करें वीडियो चलना शुरू हो जाएगा अन्यथा टेलीग्राम टिप्पणियों में संदेश दें।
+        ভিডিওটি না চললে একবার রিফ্রেশ করুন এবং কয়েক সেকেন্ড অপেক্ষা করুন ভিডিওটি চলতে শুরু করবে অন্যথায় টেলিগ্রামের মন্তব্যে বার্তা পাঠান।
+      </p>
+    </div>
   </div>
 
- <div>
-  <script async="async" data-cfasync="false" src="//carryglanced.com/2346ffc02acfb9eb4451708a5df9f609/invoke.js"></script>
-<div id="container-2346ffc02acfb9eb4451708a5df9f609"></div>
- </div>
+  <!-- Main Content -->
+  <main class="flex flex-1 flex-col md:flex-row py-4">
+
+    <!-- Left Side: Ad + Player -->
+    <div class="flex md:flex-row flex-col md:flex-1">
+
+      <!-- Ad Section (Desktop Only) -->
+      <aside class="hidden md:flex flex-shrink-0 w-[160px] h-[300px] bg-gray-300 rounded-md shadow-md m-4 items-center justify-center text-gray-700 font-semibold select-none">
+        <script type="text/javascript">
+          atOptions = {
+            'key' : '3985e6b732a4c4ad3c1ea07dc12b3882',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="//carryglanced.com/3985e6b732a4c4ad3c1ea07dc12b3882/invoke.js"></script>
+      </aside>
+
+      <!-- Player Section -->
+      <section id="player-container" class="flex-1 bg-black min-h-[300px] md:min-h-[400px] py-4 md:py-8 m-4 md:m-0">
+        <iframe
+          id="video-iframe"
+          class="w-full h-full rounded-md"
+          src="https://plyr.link/?url=https://amg01281-9xmediapvtltd-9xjalwa-samsungin-goszf.amagi.tv/playlist/amg01281-9xmediapvtltd-9xjalwa-samsungin/playlist.m3u8"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay"
+        ></iframe>
+      </section>
+    </div>
+
+    <!-- Channels Sidebar -->
+    <aside id="channels" class="bg-white md:w-80 overflow-y-auto p-1">
+      <h3 class="text-xl font-semibold mb-4 text-primary px-4">Channels</h3>
+      <div class="space-y-1 px-2">
+        <div class="channel cursor-pointer rounded-md p-3 bg-channelBg hover:bg-channelHover transition-colors duration-200"
+          data-src="https://amg01281-9xmediapvtltd-9xjalwa-samsungin-goszf.amagi.tv/playlist/amg01281-9xmediapvtltd-9xjalwa-samsungin/playlist.m3u8">
+          9xm Jalwa 1
+        </div>
+        <div class="channel cursor-pointer rounded-md p-3 bg-channelBg hover:bg-channelHover transition-colors duration-200"
+          data-src="https://epiconvh.akamaized.net/live/showbox/master.m3u8">
+          Show Box 2
+        </div>
+        <div class="channel cursor-pointer rounded-md p-3 bg-channelBg hover:bg-channelHover transition-colors duration-200"
+          data-src="https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8">
+          YRF Music 3
+        </div>
+        <div class="channel cursor-pointer rounded-md p-3 bg-channelBg hover:bg-channelHover transition-colors duration-200"
+          data-src="https://amg00877-b4unew-amg00877c3-lg-in-5261.playouts.now.amagi.tv/playlist.m3u8">
+          B4U Music 4
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Telegram CTA -->
+  <footer class="bg-primary text-white text-center py-4">
+    <a href="https://t.me/cric_stream" target="_blank" rel="noopener noreferrer">
+      <button class="bg-white text-primary px-6 py-2 rounded-md font-semibold shadow-md hover:bg-gray-100 transition">
+        Join Telegram
+      </button>
+    </a>
+  </footer>
+
+  <!-- Bottom Ad -->
+  <div class="max-w-screen-lg mx-auto p-4">
+    <script async="async" data-cfasync="false" src="//carryglanced.com/2346ffc02acfb9eb4451708a5df9f609/invoke.js"></script>
+    <div id="container-2346ffc02acfb9eb4451708a5df9f609"></div>
+  </div>
+
+  <!-- JS to Switch Channels -->
+  <script>
+    const iframe = document.getElementById("video-iframe");
+    const channels = document.querySelectorAll(".channel");
+
+    function clearActive() {
+      channels.forEach(c => c.classList.remove("bg-channelActive", "text-white"));
+    }
+
+    // Set first channel active
+    channels[0].classList.add("bg-channelActive", "text-white");
+
+    channels.forEach(channel => {
+      channel.addEventListener("click", () => {
+        const videoSrc = channel.getAttribute("data-src");
+
+        if (!channel.classList.contains("bg-channelActive")) {
+          clearActive();
+          channel.classList.add("bg-channelActive", "text-white");
+          iframe.src = `https://plyr.link/?url=${encodeURIComponent(videoSrc)}`;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
